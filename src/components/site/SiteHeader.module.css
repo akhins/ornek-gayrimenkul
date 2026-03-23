@@ -1,0 +1,227 @@
+.spacer {
+  height: 72px;
+}
+
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.header[data-scrolled="true"] {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.inner {
+  width: min(var(--container), calc(100% - 40px));
+  height: 62px;
+  border-radius: 18px;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.35);
+  transform-origin: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.brandMark {
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  background:
+    radial-gradient(12px 12px at 30% 30%, rgba(212, 175, 55, 0.95), transparent 55%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.10);
+}
+
+.brandText {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: 14px;
+}
+
+.nav {
+  display: none;
+  gap: 22px;
+  align-items: center;
+}
+
+.navLink {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 10px 10px;
+  border-radius: 12px;
+  transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+  color: var(--fg);
+}
+
+.navLink[data-active="true"] {
+  color: var(--fg);
+  background: rgba(212, 175, 55, 0.14);
+  border: 1px solid rgba(212, 175, 55, 0.26);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta {
+  display: none;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.12));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+.cta:hover {
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.33), rgba(212, 175, 55, 0.16));
+}
+
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.burger {
+  display: inline-flex;
+}
+
+.mobileOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.mobilePanel {
+  width: min(560px, 100%);
+  border-radius: 24px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.mobileTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 4px 12px 4px;
+}
+
+.brandMobile {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+}
+
+.mobileLinks {
+  display: grid;
+  gap: 10px;
+  padding: 10px 4px 10px 4px;
+}
+
+.mobileLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--fg);
+}
+
+.mobileLink:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  background: rgba(212, 175, 55, 0.10);
+}
+
+.mobileArrow {
+  color: rgba(212, 175, 55, 0.95);
+}
+
+.mobileBottom {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 4px 4px 4px;
+}
+
+.themeBtn {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+
+.ctaMobile {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.25), rgba(212, 175, 55, 0.12));
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  min-width: 120px;
+  text-align: center;
+}
+
+@media (min-width: 880px) {
+  .nav {
+    display: flex;
+  }
+  .cta {
+    display: inline-flex;
+  }
+  .burger {
+    display: none;
+  }
+}
+

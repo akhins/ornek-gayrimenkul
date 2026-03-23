@@ -1,66 +1,126 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import { listPublicProperties } from "@/lib/properties";
+import { PropertyCard } from "@/components/site/PropertyCard";
+import styles from "./home.module.css";
 
-export default function Home() {
+export default async function Home() {
+  const featured = await listPublicProperties();
+
+  const heroPoster =
+    "https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=2400&q=80";
+  const heroVideo = "/videos/hero-video.mp4";
+
+  const categories: Array<{ type: string; label: string; desc: string }> = [
+    { type: "APARTMENT", label: "Daireler", desc: "Şehir içi premium yaşam alanları." },
+    { type: "VILLA", label: "Villalar", desc: "Gizlilik, konfor ve modern mimari." },
+    { type: "PENTHOUSE", label: "Penthouse", desc: "Işıkla tasarlanmış teras hayatı." },
+    { type: "DUPLEX", label: "Duplex", desc: "Farklı kat planlarıyla ayrıcalık." },
+  ];
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+      <section className={styles.hero}>
+        <video
+          className={styles.heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={heroPoster}
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className={styles.heroOverlay} />
+
+        <div className={styles.heroContent}>
+          <div className={styles.heroKicker}>Luxury Real Estate</div>
+          <h1 className={styles.heroTitle}>
+            Örnek Gayrimenkul Alanya ile
+            <span className={styles.heroAccent}> modern</span> yaşamın zirvesi
+          </h1>
+          <p className={styles.heroDesc}>
+            Alanya'nın en seçkin portföylerini keşfedin. Lüks, konfor ve güvenin buluşma noktası.
           </p>
+
+          <div className={styles.heroActions}>
+            <Link className={`${styles.primaryBtn} lift focus-ring`} href="/properties">
+              İlanları Keşfet
+            </Link>
+            <Link className={`${styles.secondaryBtn} lift focus-ring`} href="/contact">
+              Kişisel Teklif Al
+            </Link>
+          </div>
+
+          <div className={styles.heroStats}>
+            <div className={styles.stat}>
+              <div className={styles.statNum}>{featured.length || 3}</div>
+              <div className={styles.statLabel}>Öne çıkan ilan</div>
+            </div>
+            <div className={styles.stat}>
+              <div className={styles.statNum}>4+</div>
+              <div className={styles.statLabel}>Kategoriler</div>
+            </div>
+            <div className={styles.stat}>
+              <div className={styles.statNum}>24/7</div>
+              <div className={styles.statLabel}>Güncelleme</div>
+            </div>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <div className={styles.kicker}>Featured</div>
+            <h2 className={styles.sectionTitle}>Öne Çıkanlar</h2>
+          </div>
+          <div className={styles.sectionHint}>
+            Kartlar üzerinde hover ile detay katmanı • görsellerde yumuşak zoom • premium his.
+          </div>
         </div>
-      </main>
+
+        <div className={styles.carousel} aria-label="Öne çıkan ilanlar">
+          {featured.slice(0, 6).map((p) => (
+            <div key={p.id} className={styles.carouselItem}>
+              <PropertyCard property={p} />
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.moreRow}>
+          <Link className={`${styles.moreBtn} lift focus-ring`} href="/properties">
+            Tüm İlanları Gör
+          </Link>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.categories}`}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <div className={styles.kicker}>Kategoriler</div>
+            <h2 className={styles.sectionTitle}>Aradığınız yaşam tarzını seçin</h2>
+          </div>
+        </div>
+
+        <div className={styles.categoryGrid}>
+          {categories.map((c) => (
+            <Link
+              key={c.type}
+              href={`/properties?type=${encodeURIComponent(c.type)}`}
+              className={`${styles.categoryCard} glass-soft lift focus-ring`}
+            >
+              <div className={styles.catTop}>
+                <div className={styles.catLabel}>{c.label}</div>
+                <div className={styles.catArrow} aria-hidden="true">
+                  →
+                </div>
+              </div>
+              <div className={styles.catDesc}>{c.desc}</div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum PropertyType {
+  APARTMENT
+  VILLA
+  PENTHOUSE
+  DUPLEX
+  LAND
+}
+
+enum PropertyStatus {
+  ACTIVE
+  HIDDEN
+}
+
+model Property {
+  id          String           @id @default(cuid())
+  title       String
+  description String
+  price       Int
+  location    String
+  type        PropertyType
+  features    Json
+  status      PropertyStatus  @default(ACTIVE)
+
+  images      PropertyImage[]
+
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@index([type])
+  @@index([location])
+  @@index([status])
+}
+
+model PropertyImage {
+  id          String   @id @default(cuid())
+  propertyId String
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  sortOrder  Int    @default(0)
+  url         String // local relative (e.g. /uploads/...) or absolute URL
+  altText     String?
+
+  createdAt   DateTime @default(now())
+
+  @@index([propertyId])
+  @@index([sortOrder])
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+model ContactMessage {
+  id         String   @id @default(cuid())
+  name       String
+  email      String
+  message    String
+  propertyId String?
+
+  createdAt  DateTime @default(now())
+
+  @@index([propertyId])
+}

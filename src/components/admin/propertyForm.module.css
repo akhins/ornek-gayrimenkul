@@ -1,0 +1,245 @@
+.form {
+  margin-top: 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.label {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.input {
+  padding: 13px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+.textarea {
+  min-height: 140px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  resize: vertical;
+}
+
+.err {
+  color: rgba(255, 170, 170, 0.95);
+  font-size: 12.5px;
+}
+
+.features {
+  border-radius: 20px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sectionTitle {
+  color: var(--fg);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin-bottom: 12px;
+}
+
+.featureAdd {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.presets {
+  margin-top: 12px;
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.presetsTitle {
+  color: var(--muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+  font-weight: 800;
+}
+
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.presetBtn {
+  padding: 11px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--fg);
+  cursor: pointer;
+  font-weight: 850;
+  font-size: 13px;
+  transition: transform 170ms ease, filter 170ms ease, border-color 170ms ease;
+  text-align: left;
+}
+
+.presetBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  border-color: rgba(212, 175, 55, 0.40);
+}
+
+.presetBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.featureInput {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--fg);
+}
+
+.smallBtn {
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: var(--fg);
+  cursor: pointer;
+}
+
+.chips {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.26);
+  color: var(--fg);
+  cursor: pointer;
+  transition: transform 160ms ease, filter 160ms ease;
+  font-size: 13px;
+}
+
+.chip:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+}
+
+.emptyFeatures {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.gallery {
+  border-radius: 20px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.03);
+  display: grid;
+  gap: 12px;
+}
+
+.existingBlock {
+  margin-bottom: 10px;
+}
+
+.muted {
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.thumb {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  aspect-ratio: 4/3;
+  position: relative;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: transform 240ms ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.04);
+}
+
+.file {
+  display: block;
+}
+
+.newBlock {
+  margin-top: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit {
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(212, 175, 55, 0.35), rgba(212, 175, 55, 0.14));
+  border: 1px solid rgba(212, 175, 55, 0.50);
+  color: var(--fg);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+@media (min-width: 920px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+

@@ -1,0 +1,55 @@
+.wrap {
+  width: min(var(--container), calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.head {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+}
+
+.kicker {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 12px;
+}
+
+.title {
+  font-size: clamp(30px, 4.2vw, 52px);
+  line-height: 1.05;
+  margin-top: 10px;
+}
+
+.sub {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 10px;
+  max-width: 720px;
+}
+
+.back {
+  width: fit-content;
+  margin-top: 6px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.card {
+  padding: 18px;
+  border-radius: 24px;
+  margin-top: 14px;
+}
+
+@media (min-width: 900px) {
+  .head {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
