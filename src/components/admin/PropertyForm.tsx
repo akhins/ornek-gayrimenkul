@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import { z } from "zod";
 import styles from "./propertyForm.module.css";
 
@@ -92,15 +92,16 @@ export function PropertyForm({
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors, isSubmitting },
-    watch,
   } = useForm<PropertyFormValues>({
     resolver: zodResolver(schema),
     defaultValues,
     mode: "onTouched",
   });
 
-  const features = watch("features");
+  // `watch()` React Compiler ile güvenli şekilde memoize edilemediği için `useWatch` kullanıyoruz.
+  const features = useWatch({ control, name: "features" });
 
   async function submit(values: PropertyFormValues) {
     const formData = new FormData();

@@ -114,7 +114,7 @@ export async function PUT(
     revalidatePath(`/properties/${id}`);
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error updating property:", err);
     return NextResponse.json({ error: "Güncelleme başarısız oldu, veritabanı hatası" }, { status: 500 });
   }
@@ -145,7 +145,7 @@ export async function DELETE(
     revalidatePath("/properties");
 
     return NextResponse.json({ ok: true });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error deleting property:", err);
     return NextResponse.json({ error: "Silme işlemi başarısız oldu, veritabanı hatası" }, { status: 500 });
   }

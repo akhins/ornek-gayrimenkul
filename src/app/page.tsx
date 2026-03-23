@@ -40,7 +40,7 @@ export default async function Home() {
             <span className={styles.heroAccent}> modern</span> yaşamın zirvesi
           </h1>
           <p className={styles.heroDesc}>
-            Alanya'nın en seçkin portföylerini keşfedin. Lüks, konfor ve güvenin buluşma noktası.
+            Alanya&apos;nın en seçkin portföylerini keşfedin. Lüks, konfor ve güvenin buluşma noktası.
           </p>
 
           <div className={styles.heroActions}>

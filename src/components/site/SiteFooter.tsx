@@ -14,7 +14,7 @@ export function SiteFooter() {
       <div className={styles.inner}>
         <div className={styles.col}>
           <div className={styles.brand}>Örnek Gayrimenkul Alanya</div>
-          <div className={styles.sub}>Alanya'nın premium gayrimenkul deneyimi.</div>
+          <div className={styles.sub}>Alanya&apos;nın premium gayrimenkul deneyimi.</div>
         </div>
 
         <div className={styles.col}>

@@ -105,7 +105,7 @@ export async function POST(request: Request) {
     revalidatePath("/properties");
 
     return NextResponse.json({ ok: true, id: property.id });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error creating property:", err);
     return NextResponse.json({ error: "İlan oluşturulamadı, veritabanı hatası" }, { status: 500 });
   }

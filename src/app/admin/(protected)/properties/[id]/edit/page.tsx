@@ -4,6 +4,16 @@ import { prisma } from "@/lib/prisma";
 import { EditPropertyClient } from "@/components/admin/EditPropertyClient";
 import styles from "../../adminPropertyEditorPage.module.css";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+type PropertyImageShape = {
+  id: string;
+  url: string;
+  altText: string | null;
+  sortOrder: number;
+};
+
 export default async function AdminPropertyEditPage({
   params,
 }: {
@@ -28,7 +38,7 @@ export default async function AdminPropertyEditPage({
     features: Array.isArray(prop.features)
       ? (prop.features as unknown[]).filter((v): v is string => typeof v === "string")
       : [],
-    images: prop.images.map((img) => ({
+    images: (Array.isArray(prop.images) ? prop.images : []).map((img: PropertyImageShape) => ({
       id: img.id,
       url: img.url,
       altText: img.altText,

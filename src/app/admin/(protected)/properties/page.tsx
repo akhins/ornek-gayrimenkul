@@ -4,13 +4,25 @@ import Image from "next/image";
 import styles from "./adminPropertiesPage.module.css";
 import { DeletePropertyButton } from "@/components/admin/DeletePropertyButton";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+type AdminPropertyRow = {
+  id: string;
+  title: string;
+  price: number;
+  location: string;
+  type: "APARTMENT" | "VILLA" | "PENTHOUSE" | "DUPLEX" | "LAND";
+  images: Array<{ url: string }>;
+};
+
 export default async function AdminPropertiesPage() {
-  const properties = await prisma.property.findMany({
+  const properties = (await prisma.property.findMany({
     orderBy: { createdAt: "desc" },
     include: {
       images: { orderBy: { sortOrder: "asc" }, take: 1 },
     },
-  });
+  })) as unknown as AdminPropertyRow[];
 
   return (
     <div className={styles.wrap}>

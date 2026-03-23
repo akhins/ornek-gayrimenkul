@@ -31,7 +31,7 @@ export default function AboutPage() {
           <div className={`${styles.card} glass-soft`}>
             <div className={styles.cardTitle}>Geniş Portföy</div>
             <div className={styles.cardText}>
-              Alanya'nın en değerli lokasyonlarında, standartlarınıza uygun premium seçenekler sunarız.
+              Alanya&apos;nın en değerli lokasyonlarında, standartlarınıza uygun premium seçenekler sunarız.
             </div>
           </div>
           <div className={`${styles.card} glass-soft`}>
