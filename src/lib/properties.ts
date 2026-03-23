@@ -98,6 +98,7 @@ const DEMO_PROPERTIES: PublicProperty[] = [
 ];
 
 export async function getActivePropertiesCount() {
+  if (!process.env.DATABASE_URL) return 0;
   return prisma.property.count({
     where: { status: "ACTIVE" },
   });
@@ -153,6 +154,8 @@ export async function listPublicProperties(filters?: {
 }
 
 export async function getPublicPropertyById(id: string): Promise<PublicProperty | null> {
+  if (!process.env.DATABASE_URL) return DEMO_PROPERTIES.find((p) => p.id === id) || null;
+  
   const prop = await prisma.property.findFirst({
     where: { id, status: "ACTIVE" },
     include: {
